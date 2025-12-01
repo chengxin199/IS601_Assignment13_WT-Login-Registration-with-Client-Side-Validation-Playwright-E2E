@@ -1,80 +1,71 @@
 {% extends "layout.html" %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register - Calculations Pro{% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-      <div class="max-w-md mx-auto">
-        <div class="divide-y divide-gray-200">
-          <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Create Account</h2>
-            
-            <!-- Alert for errors -->
-            <div id="errorAlert" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-              <span id="errorMessage" class="block sm:inline"></span>
-            </div>
+<div class="card" style="max-width: 520px; margin: 0 auto;">
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <div style="width: 64px; height: 64px; margin: 0 auto 1rem; background: linear-gradient(135deg, #7c93c3, #9eb3d4); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(124, 147, 195, 0.2);">
+      <svg style="width: 32px; height: 32px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+      </svg>
+    </div>
+    <h2 style="font-size: 1.75rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: -0.02em;">Create Account</h2>
+    <p style="color: var(--text-secondary); font-size: 0.95rem;">Join us to start calculating</p>
+  </div>
+  
+  <!-- Alert for errors -->
+  <div id="errorAlert" class="alert alert-error" style="display: none;">
+    <span id="errorMessage"></span>
+  </div>
 
-            <!-- Alert for success -->
-            <div id="successAlert" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-              <span id="successMessage" class="block sm:inline"></span>
-            </div>
+  <!-- Alert for success -->
+  <div id="successAlert" class="alert alert-success" style="display: none;">
+    <span id="successMessage"></span>
+  </div>
 
-            <form id="registrationForm" class="space-y-6">
-              <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <input type="text" id="username" name="username" required
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              </div>
-
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" required
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              </div>
-
-              <div>
-                <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
-                <input type="text" id="first_name" name="first_name" required
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              </div>
-
-              <div>
-                <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                <input type="text" id="last_name" name="last_name" required
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              </div>
-
-              <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="password" name="password" required
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              </div>
-
-              <div>
-                <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" required
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              </div>
-
-              <div class="flex items-center justify-between mt-6">
-                <button type="submit" 
-                        class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                  Register
-                </button>
-              </div>
-            </form>
-
-            <p class="mt-4 text-sm text-gray-600 text-center">
-              Already have an account? 
-              <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Log in</a>
-            </p>
-          </div>
-        </div>
+  <form id="registrationForm" class="space-y-6">
+    <div class="grid grid-cols-2" style="gap: 1rem;">
+      <div>
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" required placeholder="John">
+      </div>
+      <div>
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required placeholder="Doe">
       </div>
     </div>
-  </div>
+
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required placeholder="Choose a username">
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="your@email.com">
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required placeholder="At least 8 characters">
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Must include uppercase, lowercase, number & special character</p>
+    </div>
+
+    <div>
+      <label for="confirm_password">Confirm Password</label>
+      <input type="password" id="confirm_password" name="confirm_password" required placeholder="Re-enter password">
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">
+      Create Account
+    </button>
+  </form>
+
+  <p style="margin-top: 1.5rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+    Already have an account? 
+    <a href="/login" style="color: var(--primary-color); text-decoration: none; font-weight: 500;">Log in</a>
+  </p>
 </div>
 
 <script>
@@ -88,15 +79,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Helper function to show error
     function showError(message) {
         errorMessage.textContent = message;
-        errorAlert.classList.remove('hidden');
-        successAlert.classList.add('hidden');
+        errorAlert.style.display = 'block';
+        successAlert.style.display = 'none';
     }
 
     // Helper function to show success
     function showSuccess(message) {
         successMessage.textContent = message;
-        successAlert.classList.remove('hidden');
-        errorAlert.classList.add('hidden');
+        successAlert.style.display = 'block';
+        errorAlert.style.display = 'none';
     }
 
     // Helper function to validate email format
@@ -117,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
 
         // Clear previous alerts
-        errorAlert.classList.add('hidden');
-        successAlert.classList.add('hidden');
+        errorAlert.style.display = 'none';
+        successAlert.style.display = 'none';
 
         // Get form data
         const formData = {

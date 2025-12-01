@@ -1,8 +1,67 @@
 {% extends "layout.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home - Calculations Pro{% endblock %}
 
 {% block content %}
-<h2>Welcome to the Calculations App</h2>
-<p>Please login or register to start using the application.</p>
+<div class="card" style="max-width: 700px; margin: 0 auto; text-align: center;">
+    <div style="margin-bottom: 2rem;">
+        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #7c93c3, #9eb3d4); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(124, 147, 195, 0.25);">
+            <svg style="width: 40px; height: 40px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            </svg>
+        </div>
+        <h2 style="font-size: 2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; letter-spacing: -0.02em;">Welcome to Calculations Pro</h2>
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; max-width: 500px; margin: 0 auto;">A modern, intuitive calculator application designed to make your calculations effortless and organized.</p>
+    </div>
+    
+    <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">Get started by creating an account or signing in</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="/register" class="btn btn-primary" style="text-decoration: none;">Create Account</a>
+            <a href="/login" class="btn btn-secondary" style="text-decoration: none;">Sign In</a>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-2" style="max-width: 900px; margin: 3rem auto 0; gap: 1.5rem;">
+    <div class="card" style="text-align: center;">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: var(--accent-color); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <svg style="width: 24px; height: 24px; color: var(--primary-dark);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+        </div>
+        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Fast & Efficient</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Perform calculations instantly with our optimized engine</p>
+    </div>
+    
+    <div class="card" style="text-align: center;">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: var(--accent-color); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <svg style="width: 24px; height: 24px; color: var(--primary-dark);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">History Tracking</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Keep track of all your calculations in one place</p>
+    </div>
+    
+    <div class="card" style="text-align: center;">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: var(--accent-color); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <svg style="width: 24px; height: 24px; color: var(--primary-dark);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+        </div>
+        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Secure & Private</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Your data is encrypted and protected</p>
+    </div>
+    
+    <div class="card" style="text-align: center;">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: var(--accent-color); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <svg style="width: 24px; height: 24px; color: var(--primary-dark);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+            </svg>
+        </div>
+        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Clean Interface</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Minimalist design for distraction-free work</p>
+    </div>
+</div>
 {% endblock %}
