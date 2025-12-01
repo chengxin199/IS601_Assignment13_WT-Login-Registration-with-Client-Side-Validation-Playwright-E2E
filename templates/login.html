@@ -133,7 +133,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.detail || 'Login failed');
+                // Handle different error formats
+                let errorMsg = 'Login failed';
+                if (typeof data.detail === 'string') {
+                    errorMsg = data.detail;
+                } else if (typeof data.detail === 'object' && data.detail.message) {
+                    errorMsg = data.detail.message;
+                } else if (data.message) {
+                    errorMsg = data.message;
+                } else if (typeof data === 'string') {
+                    errorMsg = data;
+                }
+                throw new Error(errorMsg);
             }
 
             // Store tokens and user data
@@ -156,7 +167,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
 
         } catch (error) {
-            showError(error.message || 'Invalid username or password');
+            // Ensure we always show a string message
+            let errorMsg = 'Invalid username or password';
+            if (error.message && typeof error.message === 'string') {
+                errorMsg = error.message;
+            } else if (typeof error === 'string') {
+                errorMsg = error;
+            }
+            showError(errorMsg);
         }
     });
 

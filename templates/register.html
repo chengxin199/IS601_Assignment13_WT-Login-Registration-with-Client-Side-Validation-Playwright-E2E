@@ -109,7 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return password.length >= 8 && // at least 8 characters
                /[A-Z]/.test(password) && // at least one uppercase
                /[a-z]/.test(password) && // at least one lowercase
-               /[0-9]/.test(password); // at least one number
+               /[0-9]/.test(password) && // at least one number
+               /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password); // at least one special character
     }
 
     form.addEventListener('submit', async function(e) {
@@ -141,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (!isValidPassword(formData.password)) {
-            showError('Password must be at least 8 characters long and contain uppercase, lowercase, and numbers');
+            showError('Password must be at least 8 characters long and contain uppercase, lowercase, numbers, and special characters (!@#$%^&*()_+-=[]{}\|;:,.<>?)');
             return;
         }
 
@@ -162,7 +163,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.detail || 'Registration failed');
+                // Handle different error formats
+                let errorMsg = 'Registration failed';
+                
+                // Handle FastAPI validation errors (422)
+                if (response.status === 422 && data.detail && Array.isArray(data.detail)) {
+                    // Extract validation error messages
+                    const errors = data.detail.map(err => {
+                        const field = err.loc ? err.loc[err.loc.length - 1] : 'field';
+                        return `${field}: ${err.msg}`;
+                    });
+                    errorMsg = errors.join(', ');
+                } else if (typeof data.detail === 'string') {
+                    errorMsg = data.detail;
+                } else if (typeof data.detail === 'object' && data.detail.message) {
+                    errorMsg = data.detail.message;
+                } else if (data.message) {
+                    errorMsg = data.message;
+                } else if (typeof data === 'string') {
+                    errorMsg = data;
+                }
+                throw new Error(errorMsg);
             }
 
             // Show success message
@@ -174,7 +195,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
 
         } catch (error) {
-            showError(error.message || 'An error occurred during registration');
+            // Ensure we always show a string message
+            let errorMsg = 'An error occurred during registration';
+            if (error.message && typeof error.message === 'string') {
+                errorMsg = error.message;
+            } else if (typeof error === 'string') {
+                errorMsg = error;
+            }
+            showError(errorMsg);
         }
     });
 
